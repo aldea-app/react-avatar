@@ -10,6 +10,7 @@ import 'konva/src/DragAndDrop'
 class Avatar extends React.Component {
 
   static defaultProps = {
+    id: this.generateHash('avatar_loader'),
     shadingColor: 'grey',
     shadingOpacity: 0.6,
     cropColor: 'white',
@@ -29,20 +30,10 @@ class Avatar extends React.Component {
     },
     onBeforeFileLoad: () => {
     },
-    label: 'Choose a file',
+    label: 'Elige un archivo',
     labelStyle: {
-      fontSize: '1.25em',
-      fontWeight: '700',
-      color: 'black',
-      display: 'inline-block',
-      fontFamily: 'sans-serif',
-      cursor: 'pointer'
     },
     borderStyle: {
-      border: '2px solid #979797',
-      borderStyle: 'dashed',
-      borderRadius: '8px',
-      textAlign: 'center'
     }
   };
 
@@ -50,6 +41,7 @@ class Avatar extends React.Component {
     super(props);
     const containerId = this.generateHash('avatar_container');
     const loaderId = this.generateHash('avatar_loader');
+    this.labelActioner = null;
     this.onFileLoad = this.onFileLoad.bind(this);
     this.onCloseClick = this.onCloseClick.bind(this);
     this.state = {
@@ -182,7 +174,7 @@ class Avatar extends React.Component {
 
     let reader = new FileReader();
     let file = e.target.files[0];
-    
+
     this.onFileLoadCallback(file);
 
     const image = new Image();
@@ -439,6 +431,10 @@ class Avatar extends React.Component {
     })
   }
 
+  open () {
+    this.labelActioner.click();
+  }
+
   render() {
     const { width, height } = this.props;
 
@@ -482,7 +478,7 @@ class Avatar extends React.Component {
       <div>
         {
           this.state.showLoader
-            ? <div style={borderStyle}>
+            ? <div class="AvatarUploaderComponent" style={borderStyle}>
               <input
                 onChange={(e) => this.onFileLoad(e)}
                 name={this.loaderId} type="file"
@@ -490,7 +486,9 @@ class Avatar extends React.Component {
                 style={inputStyle}
                 accept={this.mimeTypes}
               />
-              <label htmlFor={this.loaderId} style={labelStyle}>{label}</label>
+              <label htmlFor={this.loaderId} ref={(ref) => this.labelActioner = ref} style={labelStyle}>
+                {renderLabel ? renderLabel : (label ? label : '')}
+              </label>
             </div>
             : <div style={style}>
               <svg
