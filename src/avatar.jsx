@@ -41,7 +41,7 @@ class Avatar extends React.Component {
     super(props);
     const containerId = this.generateHash('avatar_container');
     const loaderId = this.generateHash('avatar_loader');
-    this.labelActioner = null;
+    this.opener = null;
     this.onFileLoad = this.onFileLoad.bind(this);
     this.onCloseClick = this.onCloseClick.bind(this);
     this.state = {
@@ -432,7 +432,7 @@ class Avatar extends React.Component {
   }
 
   open () {
-    this.labelActioner.click();
+    this.opener.click();
   }
 
   render() {
@@ -480,13 +480,14 @@ class Avatar extends React.Component {
           this.state.showLoader
             ? <div style={borderStyle}>
               <input
+                ref={(ref) => this.opener = ref}
                 onChange={(e) => this.onFileLoad(e)}
                 name={this.loaderId} type="file"
                 id={this.loaderId}
                 style={inputStyle}
                 accept={this.mimeTypes}
               />
-              <label htmlFor={this.loaderId} ref={(ref) => this.labelActioner = ref} style={labelStyle}>
+              <label htmlFor={this.loaderId} style={labelStyle}>
                 {renderLabel ? renderLabel() : (label ? label : '')}
               </label>
             </div>
