@@ -10,7 +10,7 @@ import 'konva/src/DragAndDrop'
 class Avatar extends React.Component {
 
   static defaultProps = {
-    id: this.generateHash('avatar_loader'),
+    id: '122323',
     shadingColor: 'grey',
     shadingOpacity: 0.6,
     cropColor: 'white',
@@ -436,7 +436,7 @@ class Avatar extends React.Component {
   }
 
   render() {
-    const { width, height } = this.props;
+    const { width, height, renderLabel } = this.props;
 
     const style = {
       display: 'flex',
@@ -478,7 +478,7 @@ class Avatar extends React.Component {
       <div>
         {
           this.state.showLoader
-            ? <div class="AvatarUploaderComponent" style={borderStyle}>
+            ? <div className="AvatarUploaderComponent" style={borderStyle}>
               <input
                 onChange={(e) => this.onFileLoad(e)}
                 name={this.loaderId} type="file"
@@ -490,7 +490,7 @@ class Avatar extends React.Component {
                 {renderLabel ? renderLabel : (label ? label : '')}
               </label>
             </div>
-            : <div style={style}>
+            : <div className="svgContainer" style={style}>
               <svg
                 onClick={this.onCloseClick}
                 style={closeBtnStyle}
