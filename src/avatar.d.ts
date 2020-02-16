@@ -129,6 +129,8 @@ export interface Props {
    * Invoked when user clock on close editor button
    */
   onClose?: () => void;
+
+  renderLabel?: any;
 }
 
 declare class Avatar extends React.Component<Props> {
