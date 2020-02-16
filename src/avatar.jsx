@@ -475,10 +475,10 @@ class Avatar extends React.Component {
     };
 
     return (
-      <div>
+      <div className="AvatarUploaderComponent">
         {
           this.state.showLoader
-            ? <div className="AvatarUploaderComponent" style={borderStyle}>
+            ? <div style={borderStyle}>
               <input
                 onChange={(e) => this.onFileLoad(e)}
                 name={this.loaderId} type="file"
@@ -487,11 +487,12 @@ class Avatar extends React.Component {
                 accept={this.mimeTypes}
               />
               <label htmlFor={this.loaderId} ref={(ref) => this.labelActioner = ref} style={labelStyle}>
-                {renderLabel ? renderLabel : (label ? label : '')}
+                {renderLabel ? renderLabel() : (label ? label : '')}
               </label>
             </div>
             : <div className="svgContainer" style={style}>
               <svg
+                className="AvatarUploaderCloseButton"
                 onClick={this.onCloseClick}
                 style={closeBtnStyle}
                 viewBox="0 0 475.2 475.2"
