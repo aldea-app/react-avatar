@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kirill3333/react-avatar.git"
+    "url": "git+https://github.com/blogui91/react-avatar.git"
   },
   "author": {
     "name": "Kirill Novikov",
@@ -19,14 +19,14 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kirill3333/react-avatar/issues"
+    "url": "https://github.com/blogui91/react-avatar/issues"
   },
   "keywords": [
     "avatar",
     "react",
     "canvas"
   ],
-  "homepage": "https://github.com/kirill3333/react-avatar#readme",
+  "homepage": "https://github.com/blogui91/react-avatar#readme",
   "dependencies": {
     "konva": "2.5.1"
   },
