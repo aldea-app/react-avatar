@@ -60,6 +60,7 @@ class App extends React.Component {
               height={295}
               onCrop={this.onCropDefault}
               onClose={this.onCloseDefault}
+              label="Abrir aqui"
               // src={this.state.src}
             />
           </div>
@@ -83,6 +84,11 @@ class App extends React.Component {
               width={390}
               height={295}
               cropRadius={50}
+              renderView={({ inputFile }) => {
+                <button onClick={inputFile.click()}>
+                  Abrir
+                </button>
+              }}
               onCrop={this.onCrop}
               onClose={this.onClose}
               src={this.state.src}
